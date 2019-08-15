@@ -8,7 +8,7 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 
 #if defined(Q_OS_ANDROID)
-QMAKE_LINK += -nostdlib++
+#QMAKE_LINK += -nostdlib++
 #elif defined(Q_OS_LINUX)
 QMAKE_LINK += ''
 #elif defined(Q_OS_WIN)

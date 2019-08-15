@@ -5,7 +5,7 @@ ApplicationWindow {
     id: window
     visible: true
     width: 400
-    height: 600
+    height: 480
     title: qsTr("Stack")
 
     header: ToolBar {
@@ -63,3 +63,5 @@ ApplicationWindow {
         anchors.fill: parent
     }
 }
+
+
