@@ -1,15 +1,21 @@
 QT += quick
 CONFIG += c++11
 
- #if defined(Q_OS_ANDROID)
- QMAKE_LINK += -nostdlib++
- #elif defined(Q_OS_LINUX)
- QMAKE_LINK += ''
- #elif defined(Q_OS_WIN)
- QMAKE_LINK += ''
- #else
- QMAKE_LINK += ''
- #endif
+VERSION = 1.0.2
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
+
+
+#if defined(Q_OS_ANDROID)
+QMAKE_LINK += -nostdlib++
+#elif defined(Q_OS_LINUX)
+QMAKE_LINK += ''
+#elif defined(Q_OS_WIN)
+QMAKE_LINK += ''
+#else
+QMAKE_LINK += ''
+#endif
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -37,3 +43,17 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew \
+    android/gradlew.bat \
+    android/res/values/libs.xml
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    ANDROID_PACKAGE_SOURCE_DIR = \
+        $$PWD/android
+}

@@ -4,8 +4,8 @@ import QtQuick.Controls 2.5
 ApplicationWindow {
     id: window
     visible: true
-    width: 640
-    height: 480
+    width: 400
+    height: 600
     title: qsTr("Stack")
 
     header: ToolBar {
