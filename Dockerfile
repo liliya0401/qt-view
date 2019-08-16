@@ -1,32 +1,29 @@
 FROM homdx/qt-android-docker
 
-ARG ADBCACHE_VERSION=v1.0.3
-ARG ADBCACHE_HASH=e947d10b5d69b63eb0c852d756fa025a8512ce4a2ec9378f381ba6b0fcfe2aa88fc17dd9b2ab3f8e34063b394797df1524d3c7bd2ca3f80b9f8021bc8039687a
-ARG ADBCACHEFILE=adbkey.tar.gz
+ARG ADBCACHE_VERSION=1.0.6
+ARG ADBCACHE_HASH=f64ce7ec93b7dc78b0b3a0227a369604221c9bd2d54c33d1d3e1865d720a7351cc91a99008a4ea66ab799c8e76688f442bbc65c30255baae9497e9c67c6c5f0e
+ARG ADBCACHEFILE=android.tar.gz
 
-RUN cd /root && set -ex && curl -s -L -o adbkey.tar.gz https://github.com/homdx/qt-rssnews/releases/download/${ADBCACHE_VERSION}/${ADBCACHEFILE} \
-    && echo "${ADBCACHE_HASH}  adbkey.tar.gz" | sha512sum -c \
-    && tar -xvf adbkey.tar.gz \
-    && ls -la adbkey.tar.gz && cd ..
+RUN cd /root && set -ex && curl -s -L -o android.tar.gz https://github.com/homdx/qt-view/releases/download/${ADBCACHE_VERSION}/${ADBCACHEFILE} \
+    && echo "${ADBCACHE_HASH}  android.tar.gz" | sha512sum -c \
+    && tar -xvf android.tar.gz \
+    && ls -la android.tar.gz && cd ..
 
 ARG projname=qt-view
 ARG profile=qt-stackview.pro
 
-RUN cd / && git clone https://github.com/homdx/android_openssl.git && cd /android_openssl && git checkout 5.12.4_5.13.0 && \
-    mkdir /app && cd /app && export ANDROID_TARGET_SDK_VERSION=28 && \
-    echo run && git clone https://github.com/homdx/${projname} && cd ${projname}/src && cp -vf ${profile}.buildapk ${profile} && \
-    build-android-gradle-project ${profile} --debug && \
+RUN cd / && git clone https://github.com/homdx/android_openssl.git && cd /android_openssl && git checkout 5.12.4_5.13.0 && mkdir -pv /app/qt-view
+
+ADD . /app/qt-view/
+
+WORKDIR /app/qt-view/src
+
+RUN export ANDROID_TARGET_SDK_VERSION=28 && \
+    echo run && cp -vf ${profile}.buildapk ${profile} && \
+    mkdir -pv android-build/libs/armeabi-v7a/ && \
     echo 'fix missing libc++_shared.so' && cp -vf /android-ndk-r17c/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++_shared.so android-build/libs/armeabi-v7a/ && \
     build-android-gradle-project ${profile} --debug && \
     echo copy result apk && \
-    cp -vf /app/${projname}/src/android-build/build/outputs/apk/debug/android-build-debug.apk /app
-
-RUN echo fix for upgrade version && cd /root && tar -xf adbkey.tar.gz && cd /app/${projname}/src && make clean && rm -rf android-build && export ANDROID_TARGET_SDK_VERSION=28 && \
-    echo run2 && build-android-gradle-project ${profile} --debug && \
-    echo 'fix missing libc++_shared.so' && cp -vf /android-ndk-r17c/sources/cxx-stl/llvm-libc++/libs/armeabi-v7a/libc++_shared.so android-build/libs/armeabi-v7a/ && \
-    build-android-gradle-project ${profile} --debug && \
-    echo copy result apk && \
-    cp -vf /app/${projname}/src/android-build/build/outputs/apk/debug/android-build-debug.apk /app
-
+    cp -vf android-build/build/outputs/apk/debug/android-build-debug.apk /app
 
 CMD tail -f /var/log/faillog

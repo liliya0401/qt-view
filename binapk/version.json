@@ -1,0 +1,11 @@
+{
+  "qt-view": "test",
+  "versions": [
+    {"appver": "1.0.3", "changesTxt": "Old2 version"},
+    {"appver": "1.0.4", "changesTxt": "Old1 version"},
+    {"appver": "1.0.5", "changesTxt": "Its version 1.0.5"},
+    {"appver": "1.0.6", "changesTxt": "Current version 1.0.6"},
+    {"appver": "1.0.7", "changesTxt": "Next update 1.0.7"}
+    ],
+  "number" : 5
+}
