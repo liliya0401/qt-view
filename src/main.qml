@@ -54,6 +54,15 @@ ApplicationWindow {
                     drawer.close()
                 }
             }
+            ItemDelegate {
+                text: qsTr("Настройки")
+                width: parent.width
+                onClicked: {
+                    stackView.push("PageConfigForm.ui.qml")
+                    drawer.close()
+                }
+
+            }
         }
     }
 
