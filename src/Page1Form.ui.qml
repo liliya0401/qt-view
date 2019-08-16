@@ -18,11 +18,11 @@ Page {
         x: 60
         y: 20
         color: "#a40000"
-        text: 'this' + qsTr(Qt.application.version)
+        text: qsTr(Qt.application.version)
         //anchors.top: parent.top
         anchors.topMargin: 80
         //qsTr("version")
-        font.pixelSize: 12
+        font.pixelSize: 18
     }
 
     Button {
