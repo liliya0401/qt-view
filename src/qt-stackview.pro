@@ -1,11 +1,9 @@
 QT += quick
 CONFIG += c++11
 
-VERSION = 1.0.2
+VERSION = 1.0.6
 
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
-
-
 
 #if defined(Q_OS_ANDROID)
 #QMAKE_LINK += -nostdlib++

@@ -6,8 +6,7 @@ Page {
     width: 400
     height: 600
 
-    title: qsTr("Home ") + qsTr(Qt.application.version)
-
+    title: qsTr("Home ") + Qt.application.version
     Label {
         text: qsTr("You are on the home page.")
         anchors.centerIn: parent
