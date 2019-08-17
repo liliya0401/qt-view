@@ -39,7 +39,7 @@ ApplicationWindow {
             anchors.fill: parent
 
             ItemDelegate {
-                text: qsTr("Page 1")
+                text: qsTr("Обновление")
                 width: parent.width
                 onClicked: {
                     stackView.push("Page1Form.ui.qml")

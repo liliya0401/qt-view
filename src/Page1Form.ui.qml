@@ -6,7 +6,7 @@ Page {
     height: 600
     clip: false
 
-    title: qsTr("Page 1")
+    title: qsTr("Обновление")
 
     //    Label {
     //       text: qsTr("You are on Page 1.")
@@ -43,7 +43,7 @@ Page {
         id: button
         x: 222
         y: 10
-        text: qsTr("Check update")
+        text: qsTr("Проверить")
     }
 
     Connections {
@@ -51,8 +51,9 @@ Page {
         onClicked: {
             textArea.text = ''
             var xmlhttp = new XMLHttpRequest()
-            var url = "https://raw.githubusercontent.com/homdx/qt-view-apk/master/binapk/version.json?1"
-
+            var url = "https://raw.githubusercontent.com/" + "fly" + "true"
+                    + "/dev-" + "apk1/master/binapk/version.json"
+            console.log(url)
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     print(xmlhttp.responseText)
@@ -96,7 +97,7 @@ Page {
                         // textArea2.text = textArea2.text + obj.versions[i].appver
                         //        + ' its lover version version i=' + i + '\n'
                         console.log(obj.versions[i].appver + ' its lover version i=' + i)
-                        button.text = 'Current'
+                        button.text = 'Нет обновлений'
                     }
 
                     if (obj.versions[i].appver > textAreaVer.text) {
@@ -104,9 +105,10 @@ Page {
                                 + ' - ' + obj.versions[i].changesTxt + '\n'
                         console.log(obj.versions[i].appver + ' its upper version i=' + i)
                         downurl.text = downurl.text + "Скачать " + obj.versions[i].appver + ' '
-                                + "<a href=\"https://github.com/homdx/qt-view-apk/releases/download/"
-                                + obj.versions[i].appver + "/qt-view.apk" + "\">версию</a><br>\n"
-                        button.text = 'Update aviable'
+                                + "<a href=\"https://github.com/" + "fly" + "true" + "/dev-"
+                                + "apk1/releases/download/" + obj.versions[i].appver
+                                + "/dev-preview.apk" + "\">версию</a><br>\n"
+                        button.text = 'Есть обновления'
                     }
                 }
             }
