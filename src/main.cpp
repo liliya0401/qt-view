@@ -16,5 +16,8 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    app.setOrganizationName("qt-stackview");
+    app.setOrganizationDomain("qt-stackview.com");
+    app.setApplicationName("Qt Stack View Application");
     return app.exec();
 }

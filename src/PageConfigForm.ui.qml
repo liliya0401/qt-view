@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import Qt.labs.settings 1.0
 
 Page {
     id: page
@@ -9,6 +10,14 @@ Page {
 
     title: qsTr("Настройки приложения")
 
+    Settings {
+        property alias phone_num: phoneTxt.text
+        property alias phone_pass: passTxt.text
+    }
+
+    Component.onDestruction: {
+        settings.state = page.state
+    }
     Label {
         text: qsTr("Настройки")
         anchors.centerIn: parent
@@ -20,9 +29,10 @@ Page {
         y: 34
         width: 137
         height: 34
-        inputMask: "9999999999"
+        //inputMask: qsTr("9999999999")
+        text: ''
         //        text: qsTr("12345678")
-        // inputMethodHints: Qt.ImhDigitsOnly
+        inputMethodHints: Qt.ImhDigitsOnly
         placeholderText: qsTr("Номер тел.")
         font.pixelSize: 18
     }

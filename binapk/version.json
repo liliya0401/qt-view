@@ -1,9 +1,8 @@
 {
   "qt-view": "test",
   "versions": [
-    {"appver": "1.0.6", "changesTxt": "Prev version 1.0.6"},
-    {"appver": "1.0.7", "changesTxt": "Current 1.0.7"},
-    {"appver": "1.0.8", "changesTxt": "Next update 1.0.8"}
+    {"appver": "0.0.1", "changesTxt": "Version with store phone and pass"},
+    {"appver": "0.0.2", "changesTxt": "Next new gui vers - prov by L"}
     ],
-  "number" : 3
+  "number" : 2
 }
