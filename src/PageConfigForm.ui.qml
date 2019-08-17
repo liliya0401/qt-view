@@ -6,8 +6,8 @@ Page {
     id: page
     width: 400
     height: 600
-    property alias phone1PasswordCharacter: passTxt.passwordCharacter
 
+    //property alias phone1PasswordCharacter: passTxt.passwordCharacter
     title: qsTr("Настройки приложения")
 
     Settings {
