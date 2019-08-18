@@ -39,6 +39,15 @@ ApplicationWindow {
             anchors.fill: parent
 
             ItemDelegate {
+                text: qsTr("Заказы")
+                width: parent.width
+                onClicked: {
+                    stackView.push("PageHistoryForm.ui.qml")
+                    drawer.close()
+                }
+}
+
+            ItemDelegate {
                 text: qsTr("Обновление")
                 width: parent.width
                 onClicked: {
@@ -54,6 +63,9 @@ ApplicationWindow {
                     drawer.close()
                 }
             }
+
+
+
             ItemDelegate {
                 text: qsTr("Настройки")
                 width: parent.width
