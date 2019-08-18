@@ -1,0 +1,29 @@
+language: qml
+services:
+- docker
+before_install:
+- docker pull homdx/qt-android-docker
+- mkdir source
+- cd source
+- git clone https://github.com/homdx/qt-view
+- cd qt-view
+script:
+- docker build -t test .
+- mkdir apk
+- docker run --rm -it --name test -v $TRAVIS_BUILD_DIR/source/qt-view/apk:/app2 -d
+  test
+- docker exec -it test cp /app/android-build-debug.apk /app2/dev-preview.apk
+- ls -la apk
+- mv apk/dev-preview.apk $TRAVIS_BUILD_DIR
+- cd $TRAVIS_BUILD_DIR
+deploy:
+  provider: releases
+  api_key:
+    secure: AMjUkvL8bp2dOodWIxIs4oGtH5XvpLj6R+ovUckO4NINCh/F3XYGzYvXOX63SZZKM7fqDYXdReVU3YsVtQoMu62HFHMdy74e/59OHA4q3BWgFh3ZPSTb+86Yl8OQgcMt4NsDbkSB2W3O3MknHPZ+6BI52pRUJtAr9ULwf4kjAlaLIs2wuFAhr1VeisLXj9iCplEf7+y4le+Ex4smlGHi2pkJsLWux1BxPXpRyG5aK90iRDSJH6uqspn2e24CHVidg6CQMK/tS2l5l3Yxz9CNsln52gG9X1j1P039ZAcqg/AaLxTe6JHajuYUHRM8CaOy+bOoiynEIwfiGokhfJ9Qskr84a0FDlqnH4r2mtpAvoY0sGHMlNSfj6DxAgqMrJGraWR38kHiPY52yNlQB1+BbuOJNBVg2wBF8f/YV67S5NbO5rZ7OWpTrY0QRJrV1S/ycBR4VyuYGJZFTGZHHFdJZbh5PMkoWAs0Tsw1wrQkTPqtoBybKYUAEtRxQPNu3YEaH5FKfBe9G0e1XRrZNsrZCBXlIZgAWgIr8zFyPvE5asXZlRXOUG7aOe5ksiCf1qP6wYWI04HeWS7eE4UfhFHlsnDvWS+Qt8HzCNzlzHDke1SccooYIxvdi3fY/1PoWCshKIQL9cXUpY55LAtTbwOoxW/LM1FtNewIcu63eurDhE4=
+  file:
+    - dev-preview.apk
+  prerelease: true
+  skip_cleanup: true
+  draft: true
+  on:
+    repo: homdx/qt-view
