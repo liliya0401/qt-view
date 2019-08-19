@@ -5,7 +5,7 @@ before_install:
 - docker pull homdx/qt-android-docker
 - mkdir source
 - cd source
-- git clone https://github.com/homdx/qt-view
+- git clone https://github.com/liliya0401/qt-view
 - cd qt-view
 script:
 - docker build -t test .
@@ -19,11 +19,11 @@ script:
 deploy:
   provider: releases
   api_key:
-    secure: AMjUkvL8bp2dOodWIxIs4oGtH5XvpLj6R+ovUckO4NINCh/F3XYGzYvXOX63SZZKM7fqDYXdReVU3YsVtQoMu62HFHMdy74e/59OHA4q3BWgFh3ZPSTb+86Yl8OQgcMt4NsDbkSB2W3O3MknHPZ+6BI52pRUJtAr9ULwf4kjAlaLIs2wuFAhr1VeisLXj9iCplEf7+y4le+Ex4smlGHi2pkJsLWux1BxPXpRyG5aK90iRDSJH6uqspn2e24CHVidg6CQMK/tS2l5l3Yxz9CNsln52gG9X1j1P039ZAcqg/AaLxTe6JHajuYUHRM8CaOy+bOoiynEIwfiGokhfJ9Qskr84a0FDlqnH4r2mtpAvoY0sGHMlNSfj6DxAgqMrJGraWR38kHiPY52yNlQB1+BbuOJNBVg2wBF8f/YV67S5NbO5rZ7OWpTrY0QRJrV1S/ycBR4VyuYGJZFTGZHHFdJZbh5PMkoWAs0Tsw1wrQkTPqtoBybKYUAEtRxQPNu3YEaH5FKfBe9G0e1XRrZNsrZCBXlIZgAWgIr8zFyPvE5asXZlRXOUG7aOe5ksiCf1qP6wYWI04HeWS7eE4UfhFHlsnDvWS+Qt8HzCNzlzHDke1SccooYIxvdi3fY/1PoWCshKIQL9cXUpY55LAtTbwOoxW/LM1FtNewIcu63eurDhE4=
+    secure: ol9HdW6a+28xnn3Be9glBPZMje6/Ek/omP8Plobsty3BarR9ar1uRo7+/MGzqQrNhcy0E+NP9QUWbjJ5CRRDbeDTBvpginEsQWsDu0kbGjw3ahEDKzSbBOIAZQgfIZrM26uP2lDZb7A71nwpwzrieIS0bjifz2+JXDjVNwO7dqoTBqg7qfdyN+TDDtHd8RvqxAiYaxK2NGwys+3NkHF3xGjkDLr0ws08DF1SIPLXC0zjEu6smEUTea1aGfL/OpofuHZn03iD9vMnpXTuJHqsoxwsDVARfaIPtKUmi9nqIh3gQtQC7veUYUZQcMpnevEi2lEF5cdmYOmgohgO8kOsB+sg34aR/UhVWRtreqlGaXExnduxDU1jPgmdzDdpagO4HlE8oWodbWyI/P7sSv+RiRAQ8vz4LAB44X9IfMxHFdCwk9fCAB9roK1jbXMqTtWp1j4hcaZu0vZ7G1NDf0GncHVy1qcUCQNTEhZmiHFnhXAVMxjpmti/80oDrbhA+vZuFMEcvDu2Nm+2cwyXEY9NjEiVTktM+5ub/Q6d78dO0+NNI7LQs+Cd4YQzlA7TLVP+csKs6eXZ8hBaTHaUoXxukV1OaM2zVMH/ttpVhAm1+1EWW1wJ/wst5Rd6FyBq4nI0Nnc1sP6t/4AfbovDSUZcAbTFb0DNqoKHaXSrJP57k4o=
   file:
     - dev-preview.apk
   prerelease: true
   skip_cleanup: true
   draft: true
   on:
-    repo: homdx/qt-view
+    repo: liliya0401/qt-view
